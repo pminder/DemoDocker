@@ -7,6 +7,7 @@ docker push pminder/demo-docker:v1
 docker run pminder/demo-docker:v1
 
 # KUBERNETES
-run demo-kubernet --image=demo-docker:v1 --port=8181
-expose deployment/demo-kubernet --type="NodePort" --port=5000
-scale deployment/demo-kubernet --replicas=4
+kubectl run demo-kubernet --image=demo-docker:v1 --port=8181
+kubectl expose deployment/demo-kubernet --type="NodePort" --port=5000
+kubectl scale deployment/demo-kubernet --replicas=4
+kubectl set image deployment/demo-kubernet demo-kubernet=demo-docker:v2
