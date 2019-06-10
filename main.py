@@ -4,7 +4,7 @@ from flask import Flask, request
 from textblob import TextBlob
 
 
-VERSION = "1.0"
+VERSION = "2.0"
 app = Flask(__name__)
 
 
@@ -13,7 +13,9 @@ def get_polarity(text):
 
 
 def compute_feedback_answer(polarity):
-    if polarity > 0:
+    if polarity == 0:
+        return "Thank you for this interesting feedback\n"
+    elif polarity > 0:
         return 'Thank you for your positive feedback!\n'
     return "Sorry to hear that... What can I do to improve myself ?\n"
 
