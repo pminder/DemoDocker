@@ -4,6 +4,7 @@ from flask import Flask, request
 from textblob import TextBlob
 
 
+VERSION = "1.0"
 app = Flask(__name__)
 
 
@@ -29,8 +30,14 @@ def analyze_sentiment():
     html = "<h1>Feedback analyzer</h1>" \
            "<h3>{answer}</h3>" \
            "<b>Polarity:</b> {polarity}<br/>" \
-           "<b>Hostname:</b> {hostname}<br/>"
-    html = html.format(answer=compute_feedback_answer(polarity), polarity=polarity, hostname=socket.gethostname())
+           "<b>Hostname:</b> {hostname}<br/>" \
+           "<b>Version:</b> {version}<br/>"
+    html = html.format(
+        answer=compute_feedback_answer(polarity),
+        polarity=polarity,
+        hostname=socket.gethostname(),
+        version=VERSION
+    )
     return html
 
 
